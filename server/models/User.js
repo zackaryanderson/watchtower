@@ -35,7 +35,12 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
-    posts: [Post.schema],
+    posts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Post'
+        }
+    ],
     sensors: [Sensor.schema],
     switches: [Switch.schema]
 
