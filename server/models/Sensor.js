@@ -6,9 +6,10 @@ const { Schema } = mongoose;
 
 const sensorSchema = new Schema({
 
-    name: {
+    sensorName: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
     username: {
         type: String,

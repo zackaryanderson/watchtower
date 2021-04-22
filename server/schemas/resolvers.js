@@ -33,13 +33,13 @@ const resolvers = {
     //get all sensors and their data
     sensors: async () => {
 
-      return await Sensor.find().populate('data');
+      return await Sensor.find();//.populate('data')
 
     },
     //get one sensor and its data
     sensor: async (parent, { _id} , context) => {
 
-      return await Sensor.findById(_id).populate('data');
+      return await Sensor.findById(_id);//.populate('data');
 
     },
   },
@@ -54,6 +54,11 @@ const resolvers = {
     //delete all users (mainly for testing)
     deleteUsers: async () => {
       await User.deleteMany()
+
+      return console.log("done");
+    },
+    deleteSensors: async () => {
+      await Sensor.deleteMany()
 
       return console.log("done");
     },
@@ -98,6 +103,8 @@ const resolvers = {
           { $push: { sensors: sensor._id } },
           { new: true }
         );
+
+        return sensor;
       }
     }
 
