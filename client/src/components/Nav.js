@@ -9,20 +9,20 @@ const NavUl = styled.ul`
 	align-items: center;
 	background-color: #ffffff88;
 	padding: 0;
-`;
 
-const NavLi = styled.li`
-	padding: 0.5rem;
+	li {
+		padding: 0.5rem;
+	}
 `;
 
 function Nav() {
 	return (
 		<nav>
 			<NavUl>
-				<NavLi>Home</NavLi>
-				<NavLi>My Dashboard</NavLi>
-				<NavLi>My Community</NavLi>
-				<NavLi>Guides</NavLi>
+				<li>Home</li>
+				<li>My Dashboard</li>
+				<li>My Community</li>
+				<li>Guides</li>
 			</NavUl>
 		</nav>
 	);
