@@ -9,6 +9,7 @@ const typeDefs = gql`
         firstName: String!
         lastName: String!
         posts: [Post]
+        sensors: [Sensor]
     }
 
     type Post {
@@ -16,6 +17,13 @@ const typeDefs = gql`
         postText: String!
         createdAt: String!
         username: String!
+    }
+
+    type Sensor {
+        _id: ID
+        name: String!
+        username: String!
+        
     }
 
     type Auth {
@@ -28,6 +36,8 @@ const typeDefs = gql`
         users: [User]
         post(_id: String!): Post
         posts: [Post]
+        Sensors: [Sensor]
+        Sensor(_id: String!): Sensor
     }
 
     type Mutation {
@@ -35,6 +45,7 @@ const typeDefs = gql`
         deleteUsers(val: String): User
         login(email: String!, password: String!): Auth
         addPost(postText: String!): Post
+        addSensor(name: String!): Sensor
     }
 
 `;

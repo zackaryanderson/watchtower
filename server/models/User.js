@@ -4,8 +4,6 @@ const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 
 //import posts, sensors, and switches
-const Post = require('./Post');
-const Sensor = require('./Sensor');
 const Switch = require('./Switch');
 
 const userSchema = new Schema({
@@ -41,7 +39,12 @@ const userSchema = new Schema({
             ref: 'Post'
         }
     ],
-    sensors: [Sensor.schema],
+    sensors: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Sensor'
+        }
+    ],
     switches: [Switch.schema]
 
 });
