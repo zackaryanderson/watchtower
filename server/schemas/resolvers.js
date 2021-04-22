@@ -12,13 +12,21 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+    users: async () => {
+      return await User.find();
+    }
   },
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
 
-      return { token, user };
+      return { user, token };
+    },
+    deleteUsers: async () => {
+      await User.deleteMany()
+
+      return console.log("done");
     }
   }
 };
