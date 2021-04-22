@@ -27,6 +27,22 @@ const resolvers = {
       await User.deleteMany()
 
       return console.log("done");
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('Incorrect email');
+      }
+    
+      const correctPw = await user.isCorrectPassword(password);
+    
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect password');
+      }
+    
+      const token = signToken(user);
+      return { token, user };
     }
   }
 };
