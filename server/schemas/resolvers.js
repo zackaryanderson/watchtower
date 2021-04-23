@@ -1,6 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { User, Post, Sensor, Data } = require('../models');
+const { User, Post, Sensor, Data, Reaction } = require('../models');
 
 const resolvers = {
   Query: {
@@ -9,7 +9,7 @@ const resolvers = {
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id })
           .populate('post')
-        
+
         return user;
       }
 
@@ -24,11 +24,11 @@ const resolvers = {
     },
     //get all posts
     posts: async () => {
-      return await Post.find().populate('reactions');
+      return await Post.find().populate('reaction');
     },
     //get single post by id
     post: async (parent, { _id }) => {
-      return await Post.findById(_id).populate('reactions')
+      return await Post.findById(_id).populate('reaction')
     },
     //get all sensors and their data
     sensors: async () => {
@@ -37,7 +37,7 @@ const resolvers = {
 
     },
     //get one sensor and its data
-    sensor: async (parent, { _id} , context) => {
+    sensor: async (parent, { _id }, context) => {
 
       return await Sensor.findById(_id).populate('data');
 
@@ -96,7 +96,7 @@ const resolvers = {
     },
     addSensor: async (parent, args, context) => {
       if (context.user) {
-        const sensor = await Sensor.create({...args, username: context.user.username });
+        const sensor = await Sensor.create({ ...args, username: context.user.username });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -124,7 +124,22 @@ const resolvers = {
         return data;
       }
       throw new AuthenticationError('Not logged in');
-    }
+    },
+    addReaction: async (parent, { postId, reactionBody }, context) => {
+      if (context.user) {
+        //create reaction
+        const reaction = await Reaction.create({reactionBody: reactionBody, username: context.user._id})
+
+        //update post
+        await Post.findOneAndUpdate(
+          { _id: postId },
+          { $push: { reactions: reaction._id } },
+          { new: true }
+        );
+        return reaction;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   }
 };
 

@@ -3,5 +3,6 @@ const Sensor = require('./Sensor');
 //const Switch = require('/Switch');
 const Post = require('./Post');
 const Data = require('./Data');
+const Reaction = require('./Reaction');
 
-module.exports = { User, Post, Sensor, Data };
+module.exports = { User, Post, Sensor, Data, Reaction };

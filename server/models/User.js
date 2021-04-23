@@ -45,7 +45,12 @@ const userSchema = new Schema({
             ref: 'Sensor'
         }
     ],
-    switches: [Switch.schema]
+    reactions: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'reactions'
+        }
+    ]
 
 });
 

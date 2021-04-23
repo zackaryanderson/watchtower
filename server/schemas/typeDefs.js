@@ -9,6 +9,7 @@ const typeDefs = gql`
         firstName: String!
         lastName: String!
         posts: [Post]
+        reactions: [Reaction]
         sensors: [Sensor]
     }
 
@@ -17,6 +18,7 @@ const typeDefs = gql`
         postText: String!
         createdAt: String!
         username: String!
+        reactions: [Reaction]
     }
 
     type Sensor {
@@ -31,6 +33,13 @@ const typeDefs = gql`
         measurement: Int!
         units: String!
         timeStamp: String!
+    }
+
+    type Reaction {
+        _id: ID
+        reactionBody: String
+        createdAt: String
+        username: String
     }
 
     type Auth {
@@ -55,6 +64,7 @@ const typeDefs = gql`
         addSensor(sensorName: String!): Sensor
         deleteSensors(val: String): Sensor
         addData(sensorName: String!, measurement: Int!, units: String!): Data
+        addReaction(postId: String!, reactionBody: String!): Reaction
     }
 
 `;
