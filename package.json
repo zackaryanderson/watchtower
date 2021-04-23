@@ -25,5 +25,8 @@
   "homepage": "https://github.com/zackaryanderson/watchtower#readme",
   "devDependencies": {
     "concurrently": "^6.0.2"
+  },
+  "dependencies": {
+    "if-env": "^1.0.4"
   }
 }
