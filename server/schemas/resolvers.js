@@ -1,6 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { User, Post, Sensor } = require('../models');
+const { User, Post, Sensor, Data } = require('../models');
 
 const resolvers = {
   Query: {
@@ -33,15 +33,15 @@ const resolvers = {
     //get all sensors and their data
     sensors: async () => {
 
-      return await Sensor.find();//.populate('data')
+      return await Sensor.find().populate('data');
 
     },
     //get one sensor and its data
     sensor: async (parent, { _id} , context) => {
 
-      return await Sensor.findById(_id);//.populate('data');
+      return await Sensor.findById(_id).populate('data');
 
-    },
+    }
   },
   Mutation: {
     //add a new user
@@ -106,8 +106,25 @@ const resolvers = {
 
         return sensor;
       }
-    }
+      throw new AuthenticationError('Not logged in');
+    },
+    addData: async (parent, args, context) => {
+      if (context.user) {
+        //destructure to not push sensor name
+        const { measurement, units } = args;
+        //create data
+        const data = await Data.create({ measurement: measurement, units: units })
+        //find sensor and add data id to array of data
+        await Sensor.findOneAndUpdate(
+          { sensorName: args.sensorName },
+          { $push: { data: data._id } },
+          { new: true }
+        );
 
+        return data;
+      }
+      throw new AuthenticationError('Not logged in');
+    }
   }
 };
 

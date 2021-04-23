@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const dataSchema = new Schema({
 
-    measurment: {
+    measurement: {
         type: String,
         required: true
     },
@@ -12,13 +12,13 @@ const dataSchema = new Schema({
         type: String,
         required: true
     },
-    time: {
+    timeStamp: {
         type: Date,
         default: Date.now
     }
 
 });
 
-const Data = mongoose.model('Switch', dataSchema);
+const Data = mongoose.model('Data', dataSchema);
 
 module.exports = Data;

@@ -23,7 +23,14 @@ const typeDefs = gql`
         _id: ID
         sensorName: String!
         username: String!
-        
+        data: [Data]
+    }
+
+    type Data {
+        _id: ID
+        measurement: Int!
+        units: String!
+        timeStamp: String!
     }
 
     type Auth {
@@ -47,6 +54,7 @@ const typeDefs = gql`
         addPost(postText: String!): Post
         addSensor(sensorName: String!): Sensor
         deleteSensors(val: String): Sensor
+        addData(sensorName: String!, measurement: Int!, units: String!): Data
     }
 
 `;
