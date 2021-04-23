@@ -8,6 +8,10 @@ const dataSchema = new Schema({
         type: String,
         required: true
     },
+    units: {
+        type: String,
+        required: true
+    },
     time: {
         type: Date,
         default: Date.now
