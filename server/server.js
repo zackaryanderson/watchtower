@@ -32,7 +32,6 @@ app.post('/api/data', async (req, res) => {
 	const dataset = Object.entries(req.body.data);
 
 	const sensor = await Sensor.findOne({ sensorName: req.body.sensorName });
-	console.log(sensor);
 
 	const err = [];
 	dataset.forEach(([measurement, value]) => {
@@ -58,11 +57,22 @@ app.post('/api/data', async (req, res) => {
 		return;
 	}
 
+	const dataMap = dataset.map(item => {
+		return { measurement: item[0], value: item[1] };
+	});
+
+	const newData = await Data.create(dataMap);
+
+	const newDataIds = newData.map(item => item._id);
+
 	const dataInput = await Sensor.findOneAndUpdate(
 		{ sensorName: req.body.sensorName },
-		{ $push: { data: req.body.data } },
+		{ $push: { data: { $each: newDataIds } } },
 		{ new: true }
-	);
+	)
+		.select('-__v')
+		.populate({ path: 'Data', select: '-__v' });
+
 	res.json(dataInput);
 });
 

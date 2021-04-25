@@ -36,14 +36,8 @@ const sensorSchema = new Schema(
 		],
 		data: [
 			{
-				measurement: {
-					type: String,
-					required: true,
-				},
-				value: {
-					type: String,
-					required: true,
-				},
+				type: Schema.Types.ObjectId,
+				ref: 'Data',
 			},
 		],
 	},

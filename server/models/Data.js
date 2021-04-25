@@ -7,9 +7,9 @@ const dataSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	units: {
+	value: {
 		type: String,
-		default: null, // not all measurements use a unit, so shouldn't be required (like UV index or AQI)
+		required: true,
 	},
 	timeStamp: {
 		type: Date,
