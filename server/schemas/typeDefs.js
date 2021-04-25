@@ -53,7 +53,7 @@ const typeDefs = gql`
         post(_id: String!): Post
         posts: [Post]
         sensors: [Sensor]
-        sensor(_id: String!): Sensor
+        sensor(sensorName: String!): Sensor
     }
 
     type Mutation {
