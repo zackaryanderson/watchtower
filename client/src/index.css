@@ -13,9 +13,9 @@ code {
 }
 
 :root {
-  --primary: #DAD2D8;
-  --secondary: #143642;
-  --tertiary: #0F8B8D;
-  --fourth: #EC9A29;
-  --fifth: #A8201A;
+  --primary: #201e1f;
+  --secondary: #ff4000;
+  --tertiary: #faaa8d;
+  --fourth: #feefdd;
+  --fifth: #50b2c0;
 }
