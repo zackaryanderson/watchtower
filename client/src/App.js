@@ -17,7 +17,7 @@ const client = new ApolloClient({
 			}
 		})
 	},
-	uri: '/graphql',
+	uri: 'http://localhost:3001/graphql',
 })
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
 				<div>
 					<Header />
 					<Switch>
-						<Route exact path="/" component={Dashboard} />
+						<Route exact path="/dashboard" component={Dashboard} />
 						<Route exact path="/data/dump" component={DataUpload} />
 					</Switch>
 				</div>
