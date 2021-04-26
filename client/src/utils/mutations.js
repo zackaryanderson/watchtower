@@ -25,10 +25,8 @@ export const ADD_USER = gql`
 export const ADD_DATA = gql`
   mutation addData($sensorName: String!, $measurement: Int!, $units: String!){
       addData(sensorName: $sensorName, measurement:$measurement, units:$units){
-          _id
           measurement
           units
-          timeStamp
       }
     }
 `;

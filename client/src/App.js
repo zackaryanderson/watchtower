@@ -25,13 +25,11 @@ function App() {
 		<ApolloProvider client={client}>
 			<Router>
 				<div>
-					<StoreProvider>
-						<Header />
-						<Switch>
-							<Route exact path="/" component={Dashboard} />
-							<Route exact path="/data/dump" component={DataUpload} />
-						</Switch>
-					</StoreProvider>
+					<Header />
+					<Switch>
+						<Route exact path="/" component={Dashboard} />
+						<Route exact path="/data/dump" component={DataUpload} />
+					</Switch>
 				</div>
 			</Router>
 		</ApolloProvider>
