@@ -6,7 +6,7 @@ import { ADD_DATA } from '../utils/mutations';
 function DataUpload() {
 
     //load mutation function
-    const [addData] = useMutation(ADD_DATA);
+    const [addData, {error} ] = useMutation(ADD_DATA);
 
     //get data from url and sort it
     let info = window.location.href;
@@ -32,10 +32,14 @@ function DataUpload() {
                 }
             });
 
+            if (error) {
+                throw new Error('something went wrong');
+            };
+
             console.log(mutationResponse);
 
-        } catch (error) {
-            console.log(error)
+        } catch (e) {
+            console.log(e)
         }
     }
 
