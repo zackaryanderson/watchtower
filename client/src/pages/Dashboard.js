@@ -5,7 +5,7 @@ function Dashboard() {
 	return (
 		<>
 			<h2>My Dashboard</h2>
-			<DeviceCard />
+			<DeviceCard sensorName="temp-sensor"/>
 		</>
 	);
 }

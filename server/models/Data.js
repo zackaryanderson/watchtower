@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const { Schema } = mongoose;
 
@@ -14,9 +15,15 @@ const dataSchema = new Schema({
     },
     timeStamp: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        //get: timestamp => dateFormat(timestamp)
     }
 
+},
+{
+    toJSON: {
+        getters: true
+    }
 });
 
 const Data = mongoose.model('Data', dataSchema);

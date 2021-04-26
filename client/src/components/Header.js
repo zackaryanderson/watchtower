@@ -1,5 +1,4 @@
 import React from 'react';
-import Nav from './Nav';
 import styled from 'styled-components';
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
@@ -11,6 +10,11 @@ const HeaderBar = styled.header`
 	color: white;
 	justify-content: space-between;
 	align-items: center;
+
+	.title {
+		color: black;
+		text-decoration: none;
+	}
 `;
 
 function Header() {
@@ -63,10 +67,13 @@ function Header() {
 	return (
 		<HeaderBar>
 			<header className="flex-row px-1">
-				<h1>
+				<h1 className="title">
 					<Link to="/">
-						Watchtower
-		  </Link>
+						<span>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 14.828v9.172h18v-9.172l-9-8.375-9 8.375zm11 7.172h-4v-6h4v6zm10-9.852l-1.361 1.465-10.639-9.883-10.639 9.868-1.361-1.465 12-11.133 12 11.148z"/></svg>
+						 </span>
+						 Watchtower
+		  			</Link>
 				</h1>
 
 				<nav>
