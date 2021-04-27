@@ -4,22 +4,18 @@ const dateFormat = require('../utils/dateFormat');
 const { Schema } = mongoose;
 
 const dataSchema = new Schema({
-
-    measurement: {
-        type: String,
-        required: true
-    },
-    units: {
-        type: String,
-        required: true
-    },
-    timeStamp: {
-        type: Date,
-        default: Date.now,
-        //get: timestamp => dateFormat(timestamp)
-    }
-
-},
+	measurement: {
+		type: String,
+		required: true,
+	},
+	value: {
+		type: String,
+		required: true,
+	},
+	timeStamp: {
+		type: Date,
+		default: Date.now,
+	},
 {
     toJSON: {
         getters: true
