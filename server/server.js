@@ -62,7 +62,6 @@ app.post('/api/data', async (req, res) => {
 	});
 
 	const newData = await Data.create(dataMap);
-
 	const newDataIds = newData.map(item => item._id);
 
 	const dataInput = await Sensor.findOneAndUpdate(
