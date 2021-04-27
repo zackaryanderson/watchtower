@@ -60,12 +60,18 @@ export const QUERY_SENSOR = gql`
     }
 `;
 
-// export const QUERY_POSTS = gql`
-//     {
-//         post {
-//             _id
-//             sensorName
-//             username
-//         }
-//     }
-// `
+export const QUERY_POSTS = gql`
+    query {   
+        posts {
+            _id
+            username
+            postText
+            createdAt 
+            username 
+            reactions{
+                reactionBody 
+                createdAt 
+            } 
+        }
+    }
+`
