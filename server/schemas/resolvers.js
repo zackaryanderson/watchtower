@@ -108,8 +108,8 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
-    addData: async (parent, args, context) => {
-      if (context.user) {
+    addData: async (parent, args) => {
+      //if (context.user) {
         //destructure to not push sensor name
         const { measurement, units } = args;
         //create data
@@ -122,8 +122,8 @@ const resolvers = {
         );
 
         return data;
-      }
-      throw new AuthenticationError('Not logged in');
+      //}
+      //throw new AuthenticationError('Not logged in');
     },
     addReaction: async (parent, { postId, reactionBody }, context) => {
       if (context.user) {

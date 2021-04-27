@@ -28,7 +28,6 @@ export const ADD_DATA = gql`
           _id
           measurement
           units
-          timeStamp
       }
     }
 `;
