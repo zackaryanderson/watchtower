@@ -8,7 +8,14 @@ const resolvers = {
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id })
-          .populate('post')
+          .populate('posts')
+          .populate('sensors')
+          .populate('reactions')
+          .populate({
+            path: 'sensors',
+            populate: 'data'
+          })
+
 
         return user;
       }

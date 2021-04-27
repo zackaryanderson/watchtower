@@ -12,7 +12,6 @@ export const QUERY_USER = gql`
                 _id
                 postText
                 createdAt
-                reactionCount
             }
             sensors{
                 _id

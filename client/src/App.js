@@ -7,6 +7,7 @@ import './App.css';
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import DataUpload from './pages/DataUpload';
+import Login from './pages/Login';
 
 const client = new ApolloClient({
 	request: (operation) => {
@@ -29,6 +30,7 @@ function App() {
 					<Switch>
 						<Route exact path="/dashboard" component={Dashboard} />
 						<Route exact path="/data/dump" component={DataUpload} />
+						<Route exact path="/login" component={Login} />
 					</Switch>
 				</div>
 			</Router>

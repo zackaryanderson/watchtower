@@ -32,7 +32,7 @@ const typeDefs = gql`
         _id: ID
         measurement: Int!
         units: String!
-        timeStamp: String!
+        timeStamp: String
     }
 
     type Reaction {
