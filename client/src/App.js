@@ -4,6 +4,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 import './App.css';
 
+import Community from './pages/Community'
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import DataUpload from './pages/DataUpload';
@@ -21,6 +22,7 @@ const client = new ApolloClient({
 	uri: 'http://localhost:3001/graphql',
 })
 
+
 function App() {
 	return (
 		<ApolloProvider client={client}>
@@ -28,13 +30,14 @@ function App() {
 				<div>
 					<Header />
 					<Switch>
+						<Route exact path="/community" component={Community} />
 						<Route exact path="/dashboard" component={Dashboard} />
 						<Route exact path="/data/dump" component={DataUpload} />
 						<Route exact path="/login" component={Login} />
 					</Switch>
 				</div>
 			</Router>
-		</ApolloProvider>
+		</ApolloProvider >
 	);
 }
 

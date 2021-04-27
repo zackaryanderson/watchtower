@@ -44,3 +44,13 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+
+export const ADD_POST = gql`
+  mutation addPost($postText: String! ){
+    addPost(postText: $postText){
+      _id
+      postText
+    }
+  }
+`;
