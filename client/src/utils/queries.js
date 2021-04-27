@@ -59,3 +59,13 @@ export const QUERY_SENSOR = gql`
         }
     }
 `;
+
+// export const QUERY_POSTS = gql`
+//     {
+//         post {
+//             _id
+//             sensorName
+//             username
+//         }
+//     }
+// `

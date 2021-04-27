@@ -32,3 +32,12 @@ export const ADD_DATA = gql`
       }
     }
 `;
+
+export const ADD_POST = gql`
+  mutation addPost($postText: String! ){
+    addPost(postText: $postText){
+      _id
+      postText
+    }
+  }
+`;
