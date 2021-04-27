@@ -25,6 +25,15 @@ const postSchema = new Schema({
         ref: 'Reaction',
     }
 
+},
+{
+    toJSON: {
+        getters: true
+    }
+});
+
+postSchema.virtual('reactionCount').get(function() {
+    return this.reactions.length;
 });
 
 const Post = mongoose.model('Post', postSchema);

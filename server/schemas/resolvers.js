@@ -3,145 +3,151 @@ const { signToken } = require('../utils/auth');
 const { User, Post, Sensor, Data, Reaction } = require('../models');
 
 const resolvers = {
-	Query: {
-		//get one user by context
-		user: async (parent, args, context) => {
-			if (context.user) {
-				const user = await User.findOne({ _id: context.user._id }).populate('post');
+  Query: {
+    //get one user by context
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findOne({ _id: context.user._id })
+          .populate('posts')
+          .populate('sensors')
+          .populate('reactions')
+          .populate({
+            path: 'sensors',
+            populate: 'data'
+          })
 
-				return user;
-			}
 
-			throw new AuthenticationError('Not logged in');
-		},
-		//get all users
-		users: async () => {
-			const users = await User.find().populate('post');
+        return user;
+      }
 
-			return users;
-		},
-		//get all posts
-		posts: async () => {
-			return await Post.find().populate('reaction');
-		},
-		//get single post by id
-		post: async (parent, { _id }) => {
-			return await Post.findById(_id).populate('reaction');
-		},
-		//get all sensors and their data
-		sensors: async () => {
-			return await Sensor.find().populate('data');
-		},
-		//get one sensor and its data
-		sensor: async (parent, { _id }, context) => {
-			return await Sensor.findById(_id).populate('data');
-		},
-	},
-	Mutation: {
-		//add a new user
-		addUser: async (parent, args) => {
-			const user = await User.create(args);
-			const token = signToken(user);
+      throw new AuthenticationError('Not logged in');
+    },
+    //get all users
+    users: async () => {
 
-			return { user, token };
-		},
-		//delete all users (mainly for testing)
-		deleteUsers: async () => {
-			await User.deleteMany();
+      const users = await User.find().populate('post')
 
-			return console.log('done');
-		},
-		deleteSensors: async () => {
-			await Sensor.deleteMany();
+      return users;
+    },
+    //get all posts
+    posts: async () => {
+      return await Post.find().populate('reaction');
+    },
+    //get single post by id
+    post: async (parent, { _id }) => {
+      return await Post.findById(_id).populate('reaction')
+    },
+    //get all sensors and their data
+    sensors: async () => {
 
-			return console.log('done');
-		},
-		//login to the site
-		login: async (parent, { email, password }) => {
-			const user = await User.findOne({ email });
+      return await Sensor.find().populate('data');
 
-			if (!user) {
-				throw new AuthenticationError('Incorrect email');
-			}
+    },
+    //get one sensor and its data
+    sensor: async (parent, { sensorName}, context) => {
 
-			const correctPw = await user.isCorrectPassword(password);
+      return await Sensor.findOne(sensorName).populate('data');
 
-			if (!correctPw) {
-				throw new AuthenticationError('Incorrect password');
-			}
+    }
+  },
+  Mutation: {
+    //add a new user
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
 
-			const token = signToken(user);
-			return { token, user };
-		},
-		// add a post
-		addPost: async (parent, args, context) => {
-			if (context.user) {
-				const post = await Post.create({ ...args, username: context.user.username });
+      return { user, token };
+    },
+    //delete all users (mainly for testing)
+    deleteUsers: async () => {
+      await User.deleteMany()
 
-				await User.findOneAndUpdate({ _id: context.user._id }, { $push: { posts: post._id } }, { new: true });
+      return console.log("done");
+    },
+    deleteSensors: async () => {
+      await Sensor.deleteMany()
 
-				return post;
-			}
-			throw new AuthenticationError('Not logged in');
-		},
-		addSensor: async (parent, args, context) => {
-			if (context.user) {
-				const sensor = await Sensor.create({ ...args, username: context.user.username });
+      return console.log("done");
+    },
+    //login to the site
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
-				await User.findOneAndUpdate({ _id: context.user._id }, { $push: { sensors: sensor._id } }, { new: true });
+      if (!user) {
+        throw new AuthenticationError('Incorrect email');
+      }
 
-				return sensor;
-			}
-			throw new AuthenticationError('Not logged in');
-		},
-		addData: async (parent, args, context) => {
-			if (context.user) {
-				//destructure to not push sensor name
-				const { measurement, units } = args;
+      const correctPw = await user.isCorrectPassword(password);
 
-				// before creating any documents or appending data, validate against device's own expected
-				const sensor = await Sensor.findOne({ sensorName: args.sensorName });
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect password');
+      }
 
-				switch (false) {
-					case sensor.validMeasurements.includes(measurement):
-						return new Error(
-							`Measurement type does not match modes accepted by this sensor. Either update your sensor's settings on Watchtower or verify data sent by controlling device. [measurement: ${measurement}]`
-						);
-					case sensor.modes.find(mode => mode.measurement === measurement).units === units:
-						return new Error(
-							`${units} is not the accepted unit for this measurement. Either update your sensor's settings on Watchtower or verify data sent by controlling device.`
-						);
-					case !measurement ||
-						(sensor.modes.find(mode => mode.measurement === measurement).dataFormat !== 'string' &&
-							isNaN(parseFloat(measurement))):
-						return new Error(`Data type of measurement is not accepted type for this mode.`);
-					default:
-						//create data
-						const data = await Data.create({ measurement: measurement, units: units });
-						//find sensor and add data id to array of data
-						await Sensor.findOneAndUpdate(
-							{ sensorName: args.sensorName },
-							{ $push: { data: data._id } },
-							{ new: true }
-						);
+      const token = signToken(user);
+      return { token, user };
+    },
+    // add a post 
+    addPost: async (parent, args, context) => {
+      if (context.user) {
+        const post = await Post.create({ ...args, username: context.user.username });
 
-						return data;
-				}
-			}
-			throw new AuthenticationError('Not logged in');
-		},
-		addReaction: async (parent, { postId, reactionBody }, context) => {
-			if (context.user) {
-				//create reaction
-				const reaction = await Reaction.create({ reactionBody: reactionBody, username: context.user._id });
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $push: { posts: post._id } },
+          { new: true }
+        );
 
-				//update post
-				await Post.findOneAndUpdate({ _id: postId }, { $push: { reactions: reaction._id } }, { new: true });
-				return reaction;
-			}
-			throw new AuthenticationError('You need to be logged in!');
-		},
-	},
+        return post;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    addSensor: async (parent, args, context) => {
+      if (context.user) {
+        const sensor = await Sensor.create({ ...args, username: context.user.username });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $push: { sensors: sensor._id } },
+          { new: true }
+        );
+
+        return sensor;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    addData: async (parent, args) => {
+      //if (context.user) {
+        //destructure to not push sensor name
+        const { measurement, units } = args;
+        //create data
+        const data = await Data.create({ measurement: measurement, units: units })
+        //find sensor and add data id to array of data
+        await Sensor.findOneAndUpdate(
+          { sensorName: args.sensorName },
+          { $push: { data: data._id } },
+          { new: true }
+        );
+
+        return data;
+      //}
+      //throw new AuthenticationError('Not logged in');
+    },
+    addReaction: async (parent, { postId, reactionBody }, context) => {
+      if (context.user) {
+        //create reaction
+        const reaction = await Reaction.create({reactionBody: reactionBody, username: context.user._id})
+
+        //update post
+        await Post.findOneAndUpdate(
+          { _id: postId },
+          { $push: { reactions: reaction._id } },
+          { new: true }
+        );
+        return reaction;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+  }
 };
 
 module.exports = resolvers;

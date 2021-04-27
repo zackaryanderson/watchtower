@@ -34,27 +34,42 @@ const typeDefs = gql`
 		units: String!
 		timeStamp: String!
 	}
-
-	type Reaction {
-		_id: ID
-		reactionBody: String
-		createdAt: String
-		username: String
-	}
+    type Data {
+        _id: ID
+        measurement: Int!
+        units: String!
+        timeStamp: String
+    }
 
 	type Auth {
 		token: ID!
 		user: User
 	}
 
-	type Query {
-		user: User
-		users: [User]
-		post(_id: String!): Post
-		posts: [Post]
-		sensors: [Sensor]
-		sensor(_id: String!): Sensor
-	}
+    type Auth {
+        token: ID!
+        user: User
+    }
+
+    type Query {
+        user: User
+        users: [User]
+        post(_id: String!): Post
+        posts: [Post]
+        sensors: [Sensor]
+        sensor(sensorName: String!): Sensor
+    }
+
+    type Mutation {
+        addUser(username: String!, email: String!, password: String!,firstName: String!, lastName: String!): Auth
+        deleteUsers(val: String): User
+        login(email: String!, password: String!): Auth
+        addPost(postText: String!): Post
+        addSensor(sensorName: String!): Sensor
+        deleteSensors(val: String): Sensor
+        addData(sensorName: String!, measurement: Int!, units: String!): Data
+        addReaction(postId: String!, reactionBody: String!): Reaction
+    }
 
 	type Mutation {
 		addUser(username: String!, email: String!, password: String!, firstName: String!, lastName: String!): Auth
