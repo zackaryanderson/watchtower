@@ -1,9 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useQuery } from '@apollo/react-hooks';
-
-//import queries
-import { QUERY_USER } from '../utils/queries';
 
 const CardBox = styled.div`
 	max-width: 600px;
@@ -24,17 +20,6 @@ function DeviceCard({ user }) {
 
 	const sensors = user.sensors;
 	console.log(sensors[0].data)
-
-	// //get specific sensor
-	// const sensor = data.user.sensors.find((sensor) => sensor.sensorName === sensorName);
-	// //get current time
-	// const now = new Date
-	// //get time of last posted data
-	// const lastPostTime = sensor.data[sensor.data.length-1].timeStamp
-	// //calculate difference in time UTC
-	// const updateTime = now - lastPostTime;
-	// //convert time difference from miliseconds to minutes and round
-	// const formattedTime = Math.round(updateTime / (60*1000));
 
 	//calculate time since last update
 	const formattedTime = (time) => {
