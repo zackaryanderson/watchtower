@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-//import { useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_DATA } from '../utils/mutations';
 
