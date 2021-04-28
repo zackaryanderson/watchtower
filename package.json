@@ -1,4 +1,4 @@
-
+{
 	"name": "watchtower",
 	"version": "1.0.0",
 	"description": "",
@@ -29,3 +29,4 @@
 	"dependencies": {
 		"if-env": "^1.0.4"
 	}
+}

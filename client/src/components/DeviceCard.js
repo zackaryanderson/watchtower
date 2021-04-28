@@ -18,12 +18,14 @@ const CardBox = styled.div`
 
 function DeviceCard({ user }) {
 
+	console.log(user.sensors)
+
 	const sensors = user.sensors;
 	console.log(sensors[0].data)
 
 	//calculate time since last update
 	const formattedTime = (time) => {
-		const now = new Date;
+		const now = new Date();
 
 		const elapsedTime = Math.round((now - time) / (60 * 1000));
 
@@ -57,12 +59,12 @@ function DeviceCard({ user }) {
 							<p>
 								<strong>Temperature:</strong>
 							</p>
-							{sensor.data ?
+							{sensor.data.length ?
 								(
 									<h1>{sensor.data[sensor.data.length - 1].measurement} {formattedUnits(sensor.data[sensor.data.length - 1].units)}</h1>
 								) : (<h4>No Data Yet</h4>)}
 						</div>
-						{sensor.data ?
+						{sensor.data.length ?
 							(
 								<h4>Last updated {formattedTime(sensor.data[sensor.data.length - 1].timeStamp)} minutes ago</h4>
 							) : (<h4></h4>)}

@@ -8,7 +8,6 @@ const typeDefs = gql`
 		firstName: String!
 		lastName: String!
 		posts: [Post]
-		reactions: [Reaction]
 		sensors: [Sensor]
 	}
 
@@ -17,7 +16,6 @@ const typeDefs = gql`
 		postText: String!
 		createdAt: String!
 		username: String!
-		reactions: [Reaction]
 	}
 
 	type Sensor {
@@ -27,13 +25,6 @@ const typeDefs = gql`
 		data: [Data]
 	}
 
-	type Data {
-		_id: ID
-		measurement: Int!
-		dataFormat: String!
-		units: String!
-		timeStamp: String!
-	}
     type Data {
         _id: ID
         measurement: Int!
@@ -46,11 +37,6 @@ const typeDefs = gql`
 		user: User
 	}
 
-    type Auth {
-        token: ID!
-        user: User
-    }
-
     type Query {
         user: User
         users: [User]
@@ -60,17 +46,7 @@ const typeDefs = gql`
         sensor(sensorName: String!): Sensor
     }
 
-    type Mutation {
-        addUser(username: String!, email: String!, password: String!,firstName: String!, lastName: String!): Auth
-        deleteUsers(val: String): User
-        login(email: String!, password: String!): Auth
-        addPost(postText: String!): Post
-        addSensor(sensorName: String!): Sensor
-        deleteSensors(val: String): Sensor
-        addData(sensorName: String!, measurement: Int!, units: String!): Data
-        addReaction(postId: String!, reactionBody: String!): Reaction
-    }
-
+    
 	type Mutation {
 		addUser(username: String!, email: String!, password: String!, firstName: String!, lastName: String!): Auth
 		deleteUsers(val: String): User
@@ -79,7 +55,6 @@ const typeDefs = gql`
 		addSensor(sensorName: String!): Sensor
 		deleteSensors(val: String): Sensor
 		addData(sensorName: String!, measurement: Int!, units: String!): Data
-		addReaction(postId: String!, reactionBody: String!): Reaction
 	}
 `;
 

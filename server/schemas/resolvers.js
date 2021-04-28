@@ -131,22 +131,7 @@ const resolvers = {
         return data;
       //}
       //throw new AuthenticationError('Not logged in');
-    },
-    addReaction: async (parent, { postId, reactionBody }, context) => {
-      if (context.user) {
-        //create reaction
-        const reaction = await Reaction.create({reactionBody: reactionBody, username: context.user._id})
-
-        //update post
-        await Post.findOneAndUpdate(
-          { _id: postId },
-          { $push: { reactions: reaction._id } },
-          { new: true }
-        );
-        return reaction;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    }
   }
 };
 

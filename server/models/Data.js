@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
 
 const { Schema } = mongoose;
 
@@ -8,7 +7,7 @@ const dataSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	value: {
+	units: {
 		type: String,
 		required: true,
 	},
@@ -16,6 +15,7 @@ const dataSchema = new Schema({
 		type: Date,
 		default: Date.now,
 	},
+},
 {
     toJSON: {
         getters: true
