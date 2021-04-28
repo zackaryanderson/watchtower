@@ -24,7 +24,7 @@ function Header() {
 			return (
 				<ul className="flex-row">
 					<li className="mx-1">
-						<Link to="/dashboard">
+						<Link to="/">
 							My Dashboard
 			  </Link>
 					</li>

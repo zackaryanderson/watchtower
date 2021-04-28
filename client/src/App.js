@@ -31,7 +31,7 @@ function App() {
 					<Header />
 					<Switch>
 						<Route exact path="/community" component={Community} />
-						<Route exact path="/dashboard" component={Dashboard} />
+						<Route exact path="/" component={Dashboard} />
 						<Route exact path="/data/dump" component={DataUpload} />
 						<Route exact path="/login" component={Login} />
 					</Switch>
