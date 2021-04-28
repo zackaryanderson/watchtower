@@ -34,8 +34,8 @@ function DeviceCard({ user }) {
 	return (
 		<div>
 			{sensors && sensors.map(sensor => (
-				<div key={sensor._id} className="card">
-					<div className="cardHeader">
+				<div key={sensor._id} className="border-2 rounded border-black my-1">
+					<div className="font-bold">
 						<h3>{sensor.sensorName}</h3>
 					</div>
 					<div className='cardBody'>
