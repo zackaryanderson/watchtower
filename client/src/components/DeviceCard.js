@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const CardBox = styled.div`
 	max-width: 600px;
 	padding: 0.4rem;
+	margin: 5px 0;
 
 	.cardHeader {
 		background-color: lightblue;
@@ -48,31 +49,30 @@ function DeviceCard({ user }) {
 
 
 	return (
-		<CardBox>
+		<div>
 			{sensors && sensors.map(sensor => (
-				<div key={sensor._id} className="card">
-					<div className="cardHeader">
-						<h3>{sensor.sensorName}</h3>
-					</div>
-					<div className='cardBody'>
-						<div>
-							<p>
-								<strong>Temperature:</strong>
-							</p>
+				<CardBox>
+					<div key={sensor._id} className="card">
+						<div className="cardHeader">
+							<h3>{sensor.sensorName}</h3>
+						</div>
+						<div className='cardBody'>
+							<div>
+								{sensor.data.length ?
+									(
+										<h1>{sensor.data[sensor.data.length - 1].measurement} {formattedUnits(sensor.data[sensor.data.length - 1].units)}</h1>
+									) : (<h4>No Data Yet</h4>)}
+							</div>
 							{sensor.data.length ?
 								(
-									<h1>{sensor.data[sensor.data.length - 1].measurement} {formattedUnits(sensor.data[sensor.data.length - 1].units)}</h1>
-								) : (<h4>No Data Yet</h4>)}
+									<h4>Last updated {formattedTime(sensor.data[sensor.data.length - 1].timeStamp)} minutes ago</h4>
+								) : (<h4></h4>)}
+							<button>View Data</button>
 						</div>
-						{sensor.data.length ?
-							(
-								<h4>Last updated {formattedTime(sensor.data[sensor.data.length - 1].timeStamp)} minutes ago</h4>
-							) : (<h4></h4>)}
-						<button>View Data</button>
 					</div>
-				</div>
+				</CardBox>
 			))}
-		</CardBox>
+		</div>
 	);
 }
 
