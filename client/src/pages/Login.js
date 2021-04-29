@@ -35,14 +35,14 @@ const Login = (props) => {
   };
 
   return (
-    <main className='flex-row justify-center mb-4'>
-      <div className='col-12 col-md-6'>
-        <div className='card'>
-          <h4 className='card-header'>Login</h4>
+    <main className='flex justify-center'>
+      <div>
+          <h4 className='card-header font-bold'>Login</h4>
           <div className='card-body'>
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleFormSubmit} className="grid w-auto shadow-xl py-20 px-10 rounded-lg">
+              Email:
               <input
-                className='form-input'
+                className='form-input border-2 rounded px-1 my-2'
                 placeholder='Your email'
                 name='email'
                 type='email'
@@ -50,8 +50,9 @@ const Login = (props) => {
                 value={formState.email}
                 onChange={handleChange}
               />
+              Password:
               <input
-                className='form-input'
+                className='form-input border-2 rounded px-1 my-1'
                 placeholder='******'
                 name='password'
                 type='password'
@@ -59,13 +60,12 @@ const Login = (props) => {
                 value={formState.password}
                 onChange={handleChange}
               />
-              <button className='btn d-block w-100' type='submit'>
+              <button className='btn d-block w-100 border-2 rounded px-1 my-2 hover:bg-fourth' type='submit'>
                 Submit
               </button>
+              {error && <div className="text-red-400">Login Failed</div>}
             </form>
-            {error && <div>Login Failed</div>}
           </div>
-        </div>
       </div>
     </main>
   );

@@ -9,6 +9,9 @@ module.exports = {
         'tertiary': "#faaa8d",
         'fourth': "#feefdd",
         'fifth': "#50b2c0"
+      },
+      fontFamily: {
+        'zcool': ['"ZCOOL QingKe HuangYou"', 'cursive']
       }
     },
   },

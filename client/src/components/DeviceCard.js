@@ -32,27 +32,29 @@ function DeviceCard({ user }) {
 
 
 	return (
-		<div>
-			{sensors && sensors.map(sensor => (
-				<div key={sensor._id} className="border-2 rounded border-black my-1">
-					<div className="font-bold">
-						<h3>{sensor.sensorName}</h3>
-					</div>
-					<div className='cardBody'>
-						<div>
+		<div className="flex justify-center">
+			<div className="grid grid-cols-2">
+				{sensors && sensors.map(sensor => (
+					<div key={sensor._id} className="border-2 rounded border-black m-1 p-1">
+						<div className="font-bold text-white bg-black rounded-t">
+							<h3>{sensor.sensorName}</h3>
+						</div>
+						<div className='cardBody'>
+							<div>
+								{sensor.data.length ?
+									(
+										<h1><a className="font-zcool text-4xl">{sensor.data[sensor.data.length - 1].measurement}</a> {formattedUnits(sensor.data[sensor.data.length - 1].units)}</h1>
+									) : (<h4>No Data Yet</h4>)}
+							</div>
 							{sensor.data.length ?
 								(
-									<h1>{sensor.data[sensor.data.length - 1].measurement} {formattedUnits(sensor.data[sensor.data.length - 1].units)}</h1>
-								) : (<h4>No Data Yet</h4>)}
+									<h4 className="text-xs">Last updated {formattedTime(sensor.data[sensor.data.length - 1].timeStamp)} minutes ago</h4>
+								) : (<h4></h4>)}
+							<button className="bg-tertiary text-white hover:bg-secondary rounded mt-2 p-1 text-sm">View Data</button>
 						</div>
-						{sensor.data.length ?
-							(
-								<h4>Last updated {formattedTime(sensor.data[sensor.data.length - 1].timeStamp)} minutes ago</h4>
-							) : (<h4></h4>)}
-						<button>View Data</button>
 					</div>
-				</div>
-			))}
+				))}
+			</div>
 		</div>
 	);
 }
