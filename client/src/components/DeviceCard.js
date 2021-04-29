@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 function DeviceCard({ user }) {
 
@@ -50,7 +51,9 @@ function DeviceCard({ user }) {
 								(
 									<h4 className="text-xs">Last updated {formattedTime(sensor.data[sensor.data.length - 1].timeStamp)} minutes ago</h4>
 								) : (<h4></h4>)}
-							<button className="bg-tertiary text-white hover:bg-secondary rounded mt-2 p-1 text-sm">View Data</button>
+							<Link to="/sensor">
+								<button className="bg-tertiary text-white hover:bg-secondary rounded mt-2 p-1 text-sm">View Data</button>
+							</Link>
 						</div>
 					</div>
 				))}

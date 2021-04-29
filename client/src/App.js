@@ -9,6 +9,7 @@ import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import DataUpload from './pages/DataUpload';
 import Login from './pages/Login';
+import Sensor from './pages/Sensor';
 
 const client = new ApolloClient({
 	request: (operation) => {
@@ -34,6 +35,7 @@ function App() {
 						<Route exact path="/" component={Dashboard} />
 						<Route exact path="/data/dump" component={DataUpload} />
 						<Route exact path="/login" component={Login} />
+						<Route exact path="/sensor/:id" component={Sensor} />
 					</Switch>
 				</div>
 			</Router>
