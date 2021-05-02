@@ -25,17 +25,7 @@ function Header() {
 							href="#pablo"
 						>
 							<Link to="/community">
-								<button className="rounded hover:text-primary px-1 hover:bg-fourth font-bold">My Community</button>
-							</Link>
-						</a>
-					</li>
-					<li className="nav-item">
-						<a
-							className="px-3 py-2 flex items-center text-s uppercase leading-snug text-white hover:opacity-75"
-							href="#pablo"
-						>
-							<Link to="/guides">
-								<button className="rounded hover:text-primary px-1 font-bold hover:bg-fourth">Guides</button>
+								<button className="rounded hover:text-primary px-1 hover:bg-fourth font-bold">Add Sensor</button>
 							</Link>
 						</a>
 					</li>

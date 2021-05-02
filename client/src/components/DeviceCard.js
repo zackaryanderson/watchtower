@@ -45,7 +45,7 @@ function DeviceCard({ user }) {
 										<h1><a className="font-zcool text-4xl inline">{sensor.data[sensor.data.length - 1].measurement}</a> {formattedUnits(sensor.data[sensor.data.length - 1].units)}</h1>
 										<h4 className="text-xs">Last updated {formattedTime(sensor.data[sensor.data.length - 1].timeStamp)} minutes ago</h4>
 										<Link to={`/sensor/${sensor.sensorName}`}>
-											<button className="bg-tertiary text-white hover:bg-secondary rounded mt-2 p-1 text-sm">View Data</button>
+											<button className="bg-fifth text-white hover:bg-fourth hover:text-black rounded mt-2 p-1 text-sm mr-1">View Data</button>
 										</Link>
 									</div>
 								) : (<h4>No Data Yet</h4>)}

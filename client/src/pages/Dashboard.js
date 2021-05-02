@@ -28,10 +28,6 @@ function Dashboard() {
 		<div>
 			<div>
 				<h2 className="font-bold">My Dashboard</h2>
-				<div className="inline ">
-					<button className="border-2 border-green-500 p-1 text-white bg-green-500 hover:bg-green-700 hover:text-white rounded mx-1 rounded">Add Sensor</button>
-					<button className="border-2 border-red-500 p-1 text-white bg-red-500 hover:bg-red-700 hover:text-white rounded">Remove Sensor</button>
-				</div>
 			</div>
 			{loading ? (
 				<h2>Loading...</h2>

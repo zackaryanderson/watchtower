@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import DataUpload from './pages/DataUpload';
 import Login from './pages/Login';
 import Sensor from './pages/Sensor';
+import DeleteSensor from './pages/DeleteSensor';
 
 const client = new ApolloClient({
 	request: (operation) => {
@@ -36,6 +37,7 @@ function App() {
 						<Route exact path="/data/dump" component={DataUpload} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/sensor/:id" component={Sensor} />
+						<Route exact path="/delete/:id" component={DeleteSensor} />
 					</Switch>
 				</div>
 			</Router>
