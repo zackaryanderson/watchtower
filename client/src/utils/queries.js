@@ -44,7 +44,7 @@ export const QUERY_SENSORS = gql`
 `;
 
 export const QUERY_SENSOR = gql`
-    query sensor($sensorName: String) {
+    query sensor($sensorName: String!) {
         sensor(sensorName: $sensorName) {
             _id
             sensorName

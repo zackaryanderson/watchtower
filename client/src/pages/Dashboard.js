@@ -24,8 +24,6 @@ function Dashboard() {
 
 	const user = data?.user || {};
 
-	console.log(user);
-
 	return (
 		<div>
 			<div>

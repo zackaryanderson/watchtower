@@ -44,9 +44,9 @@ const resolvers = {
 
     },
     //get one sensor and its data
-    sensor: async (parent, { sensorName}, context) => {
+    sensor: async (parent, { sensorName }, context) => {
 
-      return await Sensor.findOne(sensorName).populate('data');
+      return await Sensor.findOne({ sensorName: sensorName }).populate('data');
 
     }
   },
