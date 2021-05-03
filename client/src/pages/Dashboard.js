@@ -3,6 +3,7 @@ import DeviceCard from '../components/DeviceCard';
 import { Redirect } from 'react-router-dom';
 import Auth from '../utils/auth';
 
+
 function Dashboard() {
 
 	if (!Auth.loggedIn()) {
@@ -14,7 +15,9 @@ function Dashboard() {
 			<div>
 				<h2 className="font-bold">My Dashboard</h2>
 			</div>
-			<DeviceCard />
+			
+					<DeviceCard />)
+			
 		</div>
 	);
 }

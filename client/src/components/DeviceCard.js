@@ -15,8 +15,9 @@ function DeviceCard() {
 		)
 	}
 
+	console.log(data);
 	const sensors = data.user.sensors;
-	console.log(data.user);
+	
 
 	//calculate time since last update
 	const formattedTime = (time) => {
