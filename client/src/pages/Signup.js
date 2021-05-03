@@ -39,66 +39,69 @@ const Signup = () => {
   };
 
   return (
-    <main className='flex-row justify-center mb-4'>
-      <div className='col-12 col-md-6'>
-        <div className='card'>
-          <h4 className='card-header'>Sign Up</h4>
-          <div className='card-body'>
-            <form onSubmit={handleFormSubmit}>
+    <main className='flex justify-center'>
+      <div>
+        <h4 className='font-bold'>Sign Up</h4>
+        <div>
+          <form onSubmit={handleFormSubmit} className="grid w-auto shadow-xl py-20 px-10 rounded-lg">
+            <h3 className="flex">Name:</h3>
             <input
-                className='form-input'
-                placeholder='First Name'
-                name='firstName'
-                type='firstName'
-                id='firstName'
-                value={formState.firstName}
-                onChange={handleChange}
-              />
-              <input
-                className='form-input'
-                placeholder='Last Name'
-                name='lastName'
-                type='lastName'
-                id='lastName'
-                value={formState.lastName}
-                onChange={handleChange}
-              />
-              <input
-                className='form-input'
-                placeholder='Username'
-                name='username'
-                type='username'
-                id='username'
-                value={formState.username}
-                onChange={handleChange}
-              />
-              <input
-                className='form-input'
-                placeholder='Email'
-                name='email'
-                type='email'
-                id='email'
-                value={formState.email}
-                onChange={handleChange}
-              />
-              <input
-                className='form-input'
-                placeholder='Password'
-                name='password'
-                type='password'
-                id='password'
-                value={formState.password}
-                onChange={handleChange}
-              />
-              <button className='border-2 border-black rounded p-1' type='submit'>
-                Submit
+              className='form-input m-1 border-2 rounded p-1'
+              placeholder='First'
+              name='firstName'
+              type='firstName'
+              id='firstName'
+              value={formState.firstName}
+              onChange={handleChange}
+            />
+            <input
+              className='form-input m-1 border-2 rounded p-1'
+              placeholder='Last'
+              name='lastName'
+              type='lastName'
+              id='lastName'
+              value={formState.lastName}
+              onChange={handleChange}
+            />
+            <h3 className="flex mt-2">Username:</h3>
+            <input
+              className='form-input m-1 border-2 rounded p-1'
+              placeholder='Username'
+              name='username'
+              type='username'
+              id='username'
+              value={formState.username}
+              onChange={handleChange}
+            />
+            <h3 className="flex mt-2">Email:</h3>
+            <input
+              className='form-input m-1 border-2 rounded p-1'
+              placeholder='Email'
+              name='email'
+              type='email'
+              id='email'
+              value={formState.email}
+              onChange={handleChange}
+            />
+            <h3 className="flex mt-2">Password:</h3>
+            <input
+              className='form-input m-1 border-2 rounded p-1'
+              placeholder='Password'
+              name='password'
+              type='password'
+              id='password'
+              value={formState.password}
+              onChange={handleChange}
+            />
+            <button className='border-2 border-black rounded p-1' type='submit'>
+              Submit
               </button>
-            </form>
-            {error && <div>Sign up failed</div>}
-          </div>
+          </form>
+          {error && <div>Sign up failed</div>}
         </div>
+        {/* </div> */}
       </div>
-    </main>
+    </main >
   );
 };
 
