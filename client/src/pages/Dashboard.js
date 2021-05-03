@@ -22,7 +22,7 @@ function Dashboard() {
 		)
 	}
 
-	const user = data?.user || {};
+	const user = data.user;
 
 	console.log(user)
 
