@@ -69,6 +69,17 @@ const resolvers = {
 
       return console.log("done");
     },
+    deleteSensor: async (parent, args, context) => {
+      if (context.user) {
+        
+        await Sensor.findOneAndDelete(
+          { sensorName: args.sensorName }
+        );
+
+        return console.log("done");
+      }
+      throw new AuthenticationError('Not logged in');
+    },
     //login to the site
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });

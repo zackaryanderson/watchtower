@@ -54,6 +54,7 @@ const typeDefs = gql`
 		addPost(postText: String!): Post
 		addSensor(sensorName: String!): Sensor
 		deleteSensors(val: String): Sensor
+		deleteSensor(sensorName: String!): Sensor
 		addData(sensorName: String!, measurement: Int!, units: String!): Data
 	}
 `;

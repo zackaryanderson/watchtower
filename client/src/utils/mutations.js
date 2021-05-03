@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const ADD_SENSOR = gql`
-    mutation addSensor($sensorName: String){
+    mutation addSensor($sensorName: String!){
         addSensor(sensorName: $sensorName) {
             _id
             sensorName
@@ -51,6 +51,14 @@ export const ADD_POST = gql`
     addPost(postText: $postText){
       _id
       postText
+    }
+  }
+`;
+
+export const DELETE_SENSOR = gql`
+  mutation deleteSensor($sensorName: String!) {
+    deleteSensor(sensorName: $sensorName) {
+      sensorName
     }
   }
 `;
