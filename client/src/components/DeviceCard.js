@@ -9,14 +9,14 @@ function DeviceCard() {
 
 	const { loading, data } = useQuery(QUERY_USER);
 
-	if (loading) {
-		return (
-			<h2>Loading...</h2>
-		)
-	}
+	// if (loading) {
+	// 	return (
+	// 		<h2>Loading...</h2>
+	// 	)
+	// }
 
-	console.log(data);
-	const sensors = data.user.sensors;
+	// console.log(data);
+	// const sensors = data.user.sensors;
 	
 
 	//calculate time since last update
@@ -45,8 +45,11 @@ function DeviceCard() {
 
 	return (
 		<div className="flex justify-center">
+			{loading? 
+			( <h2>Loading...</h2>
+			):(
 			<div className="grid grid-cols-2">
-				{sensors && sensors.map(sensor => (
+				{data.user.sensors && data.user.sensors.map(sensor => (
 					<div key={sensor._id} className="border-2 rounded border-black m-1 p-1">
 						<div className="font-bold text-white bg-black rounded-t">
 							<h3>{sensor.sensorName}</h3>
@@ -67,6 +70,7 @@ function DeviceCard() {
 					</div>
 				))}
 			</div>
+			)}
 		</div>
 	);
 }
