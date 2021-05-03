@@ -42,6 +42,10 @@ function DeviceCard() {
 		}
 	}
 
+	const display = () => {
+		console.log(data);
+	}
+
 
 	return (
 		<div className="flex justify-center">
@@ -49,6 +53,7 @@ function DeviceCard() {
 			( <h2>Loading...</h2>
 			):(
 			<div className="grid grid-cols-2">
+				<div>{display}</div>
 				{data.user.sensors && data.user.sensors.map(sensor => (
 					<div key={sensor._id} className="border-2 rounded border-black m-1 p-1">
 						<div className="font-bold text-white bg-black rounded-t">
