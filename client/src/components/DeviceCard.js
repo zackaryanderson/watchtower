@@ -17,7 +17,7 @@ function DeviceCard() {
 
 	// console.log(data);
 	// const sensors = data.user.sensors;
-	
+
 
 	//calculate time since last update
 	const formattedTime = (time) => {
@@ -42,19 +42,19 @@ function DeviceCard() {
 		}
 	}
 
-	const display = () => {
-		console.log(data);
-	}
+
+	console.log(data);
+	
 
 
 	return (
 		<div className="flex justify-center">
-			{loading? 
-			( <h2>Loading...</h2>
-			):(
-			<div className="grid grid-cols-2">
-				<div>{display}</div>
-				{/* {data.user.sensors && data.user.sensors.map(sensor => (
+			{loading ?
+				(<h2>Loading...</h2>
+				) : (
+					<div className="grid grid-cols-2">
+						
+						{/* {data.user.sensors && data.user.sensors.map(sensor => (
 					<div key={sensor._id} className="border-2 rounded border-black m-1 p-1">
 						<div className="font-bold text-white bg-black rounded-t">
 							<h3>{sensor.sensorName}</h3>
@@ -74,8 +74,8 @@ function DeviceCard() {
 						</div>
 					</div>
 				))} */}
-			</div>
-			)}
+					</div>
+				)}
 		</div>
 	);
 }
