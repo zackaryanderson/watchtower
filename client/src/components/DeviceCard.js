@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 function DeviceCard({ user }) {
 
 	const sensors = user.sensors;
+	console.log(sensors);
 
 	//calculate time since last update
 	const formattedTime = (time) => {
