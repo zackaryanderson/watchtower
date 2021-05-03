@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_SENSOR } from '../utils/mutations';
 
 function AddSensor() {
 
-    const [formState, setFormState] = useState({ });
+    const [formState, setFormState] = useState({});
 
     const [addSensor] = useMutation(ADD_SENSOR);
 
@@ -36,38 +36,40 @@ function AddSensor() {
     };
 
     return (
-        <>
+        <main className='justify-center'>
             <h1>Add New Sensor</h1>
-            <form
-                className="flex justify-center"
-                onSubmit={handleFormSubmit}
-            >
-                <h3>Sensor Name:</h3>
-                <input
-                    name='sensorName'
-                    type='sensorName'
-                    id='sensorName'
-                    placeholder="Name"
-                    value={formState.sensorUnits}
-                    className="border-2 rounded"
-                    onChange={handleChange}
-                ></input>
-                <h3>Sensor Units:</h3>
-                <input
-                //set up to take units at later point
-                    name='Sensor Units'
-                    type='sensorUnits'
-                    id='sensorUnits'
-                    placeholder="Units"
-                    //value={formState.sensorUnits}
-                    className="border-2 rounded"
+            <div>
+                <form
+                    className="grid w-auto justify-center mt-2"
+                    onSubmit={handleFormSubmit}
+                >
+                    <h3>Sensor Name:</h3>
+                    <input
+                        name='sensorName'
+                        type='sensorName'
+                        id='sensorName'
+                        placeholder="Name"
+                        value={formState.sensorUnits}
+                        className="border-2 rounded"
+                        onChange={handleChange}
+                    ></input>
+                    <h3>Sensor Units:</h3>
+                    <input
+                        //set up to take units at later point
+                        name='Sensor Units'
+                        type='sensorUnits'
+                        id='sensorUnits'
+                        placeholder="Units"
+                        //value={formState.sensorUnits}
+                        className="border-2 rounded"
                     //onChange={formState.handleChange}
-                ></input>
-                <button className="border-2 border-black bg-white text-black rounded" type="submit">
-                    Submit
+                    ></input>
+                    <button className="border-2 border-black bg-white text-black rounded mt-3" type="submit">
+                        Submit
                 </button>
-            </form>
-        </>
+                </form>
+            </div>
+        </main>
     )
 
 }

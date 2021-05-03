@@ -37,7 +37,7 @@ const Login = (props) => {
   return (
     <main className='flex justify-center'>
       <div>
-          <h4 className='card-header font-bold'>Login</h4>
+          <h4 className='font-bold'>Login</h4>
           <div className='card-body'>
             <form onSubmit={handleFormSubmit} className="grid w-auto shadow-xl py-20 px-10 rounded-lg">
               Email:
