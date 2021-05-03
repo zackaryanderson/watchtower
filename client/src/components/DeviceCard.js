@@ -54,7 +54,7 @@ function DeviceCard() {
 			):(
 			<div className="grid grid-cols-2">
 				<div>{display}</div>
-				{data.user.sensors && data.user.sensors.map(sensor => (
+				{/* {data.user.sensors && data.user.sensors.map(sensor => (
 					<div key={sensor._id} className="border-2 rounded border-black m-1 p-1">
 						<div className="font-bold text-white bg-black rounded-t">
 							<h3>{sensor.sensorName}</h3>
@@ -73,7 +73,7 @@ function DeviceCard() {
 								) : (<h4>No Data Yet</h4>)}
 						</div>
 					</div>
-				))}
+				))} */}
 			</div>
 			)}
 		</div>
