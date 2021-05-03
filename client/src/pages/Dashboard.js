@@ -22,10 +22,6 @@ function Dashboard() {
 		)
 	}
 
-	const user = data?.user || {};
-
-	console.log(user)
-
 	return (
 		<div>
 			<div>
@@ -34,7 +30,7 @@ function Dashboard() {
 			{loading ? (
 				<h2>Loading...</h2>
 			) : (
-					<DeviceCard user={user} />)
+					<DeviceCard user={data} />)
 			}
 		</div>
 	);
