@@ -1,10 +1,22 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { useQuery } from '@apollo/react-hooks';
 
-function DeviceCard({ user }) {
+//import queries
+import { QUERY_USER } from '../utils/queries';
 
-	const sensors = user.user.sensors;
-	console.log(user.user);
+function DeviceCard() {
+
+	const { loading, data } = useQuery(QUERY_USER);
+
+	if (loading) {
+		return (
+			<h2>Loading...</h2>
+		)
+	}
+
+	const sensors = data.user.sensors;
+	console.log(data.user);
 
 	//calculate time since last update
 	const formattedTime = (time) => {
