@@ -46,15 +46,6 @@ export const LOGIN_USER = gql`
 `;
 
 
-export const ADD_POST = gql`
-  mutation addPost($postText: String! ){
-    addPost(postText: $postText){
-      _id
-      postText
-    }
-  }
-`;
-
 export const DELETE_SENSOR = gql`
   mutation deleteSensor($sensorName: String!) {
     deleteSensor(sensorName: $sensorName) {

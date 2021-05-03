@@ -1,6 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { User, Post, Sensor, Data, Reaction } = require('../models');
+const { User, Sensor, Data } = require('../models');
 
 const resolvers = {
   Query: {
@@ -8,9 +8,7 @@ const resolvers = {
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id })
-          .populate('posts')
           .populate('sensors')
-          .populate('reactions')
           .populate({
             path: 'sensors',
             populate: 'data'
@@ -25,17 +23,9 @@ const resolvers = {
     //get all users
     users: async () => {
 
-      const users = await User.find().populate('post')
+      const users = await User.find()
 
       return users;
-    },
-    //get all posts
-    posts: async () => {
-      return await Post.find().populate('reaction');
-    },
-    //get single post by id
-    post: async (parent, { _id }) => {
-      return await Post.findById(_id).populate('reaction')
     },
     //get all sensors and their data
     sensors: async () => {
@@ -96,21 +86,6 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
-    },
-    // add a post 
-    addPost: async (parent, args, context) => {
-      if (context.user) {
-        const post = await Post.create({ ...args, username: context.user.username });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $push: { posts: post._id } },
-          { new: true }
-        );
-
-        return post;
-      }
-      throw new AuthenticationError('Not logged in');
     },
     addSensor: async (parent, args, context) => {
       if (context.user) {

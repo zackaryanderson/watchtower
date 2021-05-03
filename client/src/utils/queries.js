@@ -8,11 +8,6 @@ export const QUERY_USER = gql`
             email
             firstName
             lastName
-            posts{
-                _id
-                postText
-                createdAt
-            }
             sensors{
                 _id
                 sensorName
@@ -58,19 +53,3 @@ export const QUERY_SENSOR = gql`
         }
     }
 `;
-
-export const QUERY_POSTS = gql`
-    query {   
-        posts {
-            _id
-            username
-            postText
-            createdAt 
-            username 
-            reactions{
-                reactionBody 
-                createdAt 
-            } 
-        }
-    }
-`
