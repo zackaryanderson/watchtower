@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 //import queries
 import { QUERY_USER } from '../utils/queries';
 
-
+//establish the dashboard function
 function Dashboard() {
 
 	const { loading, data } = useQuery(QUERY_USER);
