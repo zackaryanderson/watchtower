@@ -13,12 +13,13 @@
   
   ![License Badge](https://img.shields.io/badge/license-MIT-brightgreen)
   
+  ![Screenshot](./client/public/watchtowerScreenshot.png)
   
   ## Usage
     
   ### Follow these instructions to use the project
   - To use Watchtower, please navigate to https://safe-taiga-31978.herokuapp.com/ and create an account. To add sensor data, set up your sensors to upload data via url to the endpoint "https://safe-taiga-31978.herokuapp.com/data/dump?sensorName=humid-sensor&measurement=25&units=%" substituting in your sensor name, measurements, and units as desired.
-
+  
   
   ## Badges
 

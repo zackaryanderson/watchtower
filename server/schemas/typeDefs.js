@@ -7,15 +7,7 @@ const typeDefs = gql`
 		email: String!
 		firstName: String!
 		lastName: String!
-		posts: [Post]
 		sensors: [Sensor]
-	}
-
-	type Post {
-		_id: ID
-		postText: String!
-		createdAt: String!
-		username: String!
 	}
 
 	type Sensor {
@@ -40,8 +32,6 @@ const typeDefs = gql`
     type Query {
         user: User
         users: [User]
-        post(_id: String!): Post
-        posts: [Post]
         sensors: [Sensor]
         sensor(sensorName: String!): Sensor
     }
@@ -51,7 +41,6 @@ const typeDefs = gql`
 		addUser(username: String!, email: String!, password: String!, firstName: String!, lastName: String!): Auth
 		deleteUsers(val: String): User
 		login(email: String!, password: String!): Auth
-		addPost(postText: String!): Post
 		addSensor(sensorName: String!): Sensor
 		deleteSensors(val: String): Sensor
 		deleteSensor(sensorName: String!): Sensor
