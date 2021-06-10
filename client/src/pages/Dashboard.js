@@ -16,7 +16,7 @@ function Dashboard() {
 				<h2 className="font-bold">My Dashboard</h2>
 			</div>
 			
-					<DeviceCard />)
+			<DeviceCard />
 			
 		</div>
 	);
